@@ -1,0 +1,6 @@
+{
+  "name": "Sacred Path",
+  "description": "An advanced ChatGPT-like AI assistant powered by Gemini 3.5, featuring deep step-by-step reasoning, real-time web search integration, and multimodal image analysis.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
