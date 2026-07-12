@@ -17,7 +17,8 @@ import {
   ImagePlus,
   FileText,
   Table,
-  Presentation
+  Presentation,
+  Home
 } from "lucide-react";
 import Sidebar from "./components/Sidebar";
 import SuggestionGrid from "./components/SuggestionGrid";
@@ -693,6 +694,15 @@ export default function App() {
               id="open-sidebar-mobile-btn"
             >
               <Menu className="h-5 w-5" />
+            </button>
+            
+            <button
+              onClick={() => window.location.href = '/'}
+              className="rounded-lg p-2 text-slate-400 hover:bg-bento-bg hover:text-slate-200 transition-colors"
+              title="Home"
+              id="home-btn"
+            >
+              <Home className="h-5 w-5" />
             </button>
             
             {/* Active Session Info */}
