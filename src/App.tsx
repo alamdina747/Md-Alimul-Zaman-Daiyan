@@ -20,6 +20,7 @@ import {
   Presentation,
   Home
 } from "lucide-react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import Sidebar from "./components/Sidebar";
 import SuggestionGrid from "./components/SuggestionGrid";
 import MessageItem from "./components/MessageItem";
@@ -985,6 +986,9 @@ export default function App() {
         onClose={() => setShowAuthModal(false)}
         onAuthSuccess={handleAuthSuccess}
       />
+
+      {/* Vercel Speed Insights */}
+      <SpeedInsights />
     </div>
   );
 }
