@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { X, Mail, Lock, User, LogIn, UserPlus } from "lucide-react";
 import { AppSettings } from "../types";
+import { signInWithGoogle } from "../lib/firebase";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -45,20 +46,26 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }: AuthModalP
     }, 1200);
   };
 
-  const handleGoogleSignIn = () => {
+  const handleGoogleSignIn = async () => {
     setError("");
     setIsLoading(true);
 
-    // Simulate authentic Google OAuth popup flow
-    setTimeout(() => {
-      setIsLoading(false);
-      // Use consistent default user data for the simulation
-      const defaultName = "Alamdina";
-      const defaultEmail = "alamdina747@gmail.com";
-      const generatedAvatar = `https://api.dicebear.com/7.x/pixel-art/svg?seed=${encodeURIComponent(defaultName)}`;
-      onAuthSuccess(defaultName, defaultEmail, generatedAvatar, "google");
+    try {
+      const result = await signInWithGoogle();
+      const user = result.user;
+      
+      const displayName = user.displayName || user.email?.split("@")[0] || "User";
+      const photoURL = user.photoURL || `https://api.dicebear.com/7.x/pixel-art/svg?seed=${encodeURIComponent(displayName)}`;
+      const email = user.email || "";
+
+      onAuthSuccess(displayName, email, photoURL, "google");
       onClose();
-    }, 1500);
+    } catch (err: any) {
+      console.error("Google Auth Error:", err);
+      setError(err.message || "Failed to sign in with Google.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
