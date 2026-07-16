@@ -19,8 +19,8 @@ const AVATAR_PRESETS = [
 ];
 
 export default function SettingsModal({ settings, onSave, onClose }: SettingsModalProps) {
-  const [userName, setUserName] = useState(settings.userName);
-  const [userAvatar, setUserAvatar] = useState(settings.userAvatar);
+  const [userName, setUserName] = useState(settings.userName || "");
+  const [userAvatar, setUserAvatar] = useState(settings.userAvatar || "");
   const [customAvatarUrl, setCustomAvatarUrl] = useState("");
   const [defaultDeepThinking, setDefaultDeepThinking] = useState(settings.defaultDeepThinking);
   const [defaultWebSearch, setDefaultWebSearch] = useState(settings.defaultWebSearch);
